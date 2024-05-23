@@ -23,7 +23,6 @@ cp ./config/config_default.json $CONFIG_FILE
 
 # Mandatory variables
 declare -A variables=(
-    ["dns"]="DNS Name (If you don't have a domain, just press enter)"
     ["index_document"]="Type your html file name xxxx.html"
     ["error_document"]="Type your error html file name xxxx.html"
 )
@@ -34,6 +33,11 @@ read aws_profile
 
 if [[ $aws_profile != "none" ]]; then
     # The user chose to use an AWS profile
+    
+    # Check if the variable is empty
+    if [ -z "$aws_profile" ]; then
+        aws_profile="default"
+    fi
     update_json "profile" "$aws_profile"
     update_use_aws_profile "profile" # Set use_aws_profile to true
     echo "AWS Profile updated to $aws_profile."
@@ -56,6 +60,20 @@ else
         echo "Invalid input for AWS access keys. Exiting script."
         exit 1
     fi
+fi
+
+# Now, at this point in your script, we check if the user has a custom domain:
+read -p "Do you have a custom domain? (yes/no): " custom_domain_answer
+
+if [[ $custom_domain_answer == "yes" ]]; then
+    read -p "Please enter your DNS Name:" dns_input
+    update_json "dns" "$dns_input"
+    update_json "custom_domain_exists" "true"
+    echo "DNS updated to $dns_input"
+else
+    update_json "custom_domain_exists" "false"
+    # We do not prompt for DNS name and leave "dns" as an empty string.
+    update_json "dns" ""
 fi
 
 # Update remaining mandatory variables

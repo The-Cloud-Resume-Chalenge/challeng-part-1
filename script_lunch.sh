@@ -24,6 +24,7 @@ else
     echo "Welcome back! Skipping initial setup."
 fi
 
+./scripts/script_fill_vars.sh
 # Directly proceed to applying terraform
 cd ./static_website
 # Check if .terraform directory exists to determine if terraform init is needed

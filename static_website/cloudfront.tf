@@ -8,14 +8,14 @@ resource "aws_cloudfront_distribution" "product_s3_distribution" {
   enabled             = true
   is_ipv6_enabled     = true
   comment             = "CloudFront distribution for staging"
-  default_root_object = var.index_document
+  default_root_object = var.index_document # Setting cv.html as the root object
 
-  aliases = local.custom_domain_exists ? [var.dns] : []
+  aliases = var.custom_domain_exists ? [var.dns] : []
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${aws_s3_bucket.majid.id}-origin"
+    target_origin_id = "${aws_s3_bucket.majid.id}-origin" # This needs to match the origin_id
 
     forwarded_values {
       query_string = false
@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "product_s3_distribution" {
       }
     }
 
-    viewer_protocol_policy = "redirect-to-https"
+    viewer_protocol_policy = "redirect-to-https" # Redirect HTTP to HTTPS
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
@@ -36,10 +36,12 @@ resource "aws_cloudfront_distribution" "product_s3_distribution" {
     }
   }
 
-  viewer_certificate {
-    acm_certificate_arn            = local.custom_domain_exists ? aws_acm_certificate.default[0].arn : null
-    cloudfront_default_certificate = local.custom_domain_exists ? null : true
-    ssl_support_method             = local.custom_domain_exists ? "sni-only" : "vip"
-    minimum_protocol_version       = "TLSv1.2_2019"
-  }
+viewer_certificate {
+    acm_certificate_arn = element(concat(aws_acm_certificate.default.*.arn, tolist([""])), 0)
+    cloudfront_default_certificate = var.custom_domain_exists ? null : true
+    ssl_support_method  = "sni-only"
+}
+
+  # 'depends_on' might not be necessary, but you can keep it if you encounter issues with dependencies.
+  depends_on = [aws_acm_certificate.default]
 }

@@ -42,7 +42,6 @@ variable "default_code_repository" {
 variable "custom_domain_exists" {
   description = "Determines if a custom domain exists based on whether 'dns' is set."
   type        = bool
-  default     = false
 }
 
 # =============================== Outputs ======================================
