@@ -14,8 +14,6 @@
 # Ignore binary folder for providers, and specifically the aws and .terraform directories
 **/aws/
 .terraform/
-config.json
-
 
 # Ignore any .zip files, might contain compiled lambda source code
 *.zip
