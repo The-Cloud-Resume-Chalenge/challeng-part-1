@@ -1,6 +1,8 @@
-![AWS Logo](./images/aws.png)
 
 # Cloud Resume Challenge - S3 static website hosting
+![AWS Logo](./images/aws.png)
+
+
 
 Welcome to the Cloud Resume Challenge (Part 1) repository. This code base provides you with Terraform automation scripts to create your own cloud infrastructure and launch a notable static website for your resume on AWS S3.
 
