@@ -1,0 +1,10 @@
+
+profile                 = "abood"
+aws_access_key_id       = "xxxxxxxxxxxxxxx"
+aws_secret_access_key   = "xxxxxxxxxxxxxxx"
+use_aws_profile         = "true"
+region_master           = "us-east-1"
+dns                     = "devopsmajid.com"
+index_document          = "cv.html"
+error_document          = "404.html"
+default_code_repository = "https://github.com/AbdelmajidEMI/cloud_resume_exemple.git"
