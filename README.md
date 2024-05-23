@@ -1,5 +1,7 @@
+# Cloud Resume Challenge - S3 Static Website Hosting
+This Terraform project automates the deployment of a static website on S3 for the Cloud Resume Challenge. Check out my [blog post](https://devopsmajid.hashnode.dev/cloud-resume-challenge-part-1) for a detailed walkthrough.
 
-# Cloud Resume Challenge - S3 static website hosting
+
 ![AWS Logo](./images/aws.png)
 
 
@@ -25,7 +27,8 @@ This first part of the Challenge involves hosting a static website resume on AWS
 ## How to Use
 
 1. Execute `script_lunch.sh`.
-2. During the first run, if prompted `"To use an AWS profile, enter the profile name (or type 'none' to specify Access Keys instead):"`, you can enter the AWS profile name if available. If not, type 'none' and provide `aws_access_key_id` and `aws_secret_access_key`.
+2. During the first run, if prompted `"To use an AWS profile, enter the profile name (or type 'none' to specify Access Keys instead):"`, you can enter the AWS [profile](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) name if available. If not, type 'none' and provide `aws_access_key_id` and `aws_secret_access_key`.
+
 3. Enter your registered domain name (e.g., example.com). If you don't have a custom domain, enter 'no' to proceed with the CloudFormation-generated one.
 4. Type in the HTML index and error files.
 5. If asked `"Choose yes if you have a Github with your resume code? (yes/no):"`, type 'yes' if your resume HTML code is in a Github repo, and provide an accessible Github URL pointing to your resume code folder. The repository should contain 'index' and 'error' files at the root, not in a nested folder. If you type 'no', the default code will be used.
@@ -38,8 +41,3 @@ To clean up all resources, run `script_destroy.sh` from the root of your folder.
 
 To reset all variables, run `script_reset.sh` from the root of your folder. Ensure it reads `"Terraform destroying the static website succeeded"` to verify successful deletion of resources.
 
-
-## Learn More
-For more details, check my comprehensive step-by-step guide on the Cloud Resume Challenge. It's available on my blog post [here](https://devopsmajid.hashnode.dev/cloud-resume-challenge-part-1).
-
-Adopt automated deployment to make your resume stand out with its professional, modern aura.
