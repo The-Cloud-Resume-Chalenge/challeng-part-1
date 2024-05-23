@@ -14,7 +14,7 @@ first_visit=$(jq -r '.first_visit' "$VISIT_FILE")
 
 if [[ $first_visit == "true" ]]; then
     echo "Welcome! It looks like it's your first visit. Let's get started."
-
+    echo ""
     # Execute necessary script on first visit
     ./scripts/start.sh # Collecting users' parameters
     
