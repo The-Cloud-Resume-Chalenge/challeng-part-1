@@ -39,5 +39,4 @@ When you see `"Terraform apply succeeded. You can view your website"`, you're al
 To clean up all resources, run `script_destroy.sh` from the root of your folder. Ensure it reads `"Terraform destroying the static website succeeded"` to verify successful deletion of resources.
 
 
-To reset all variables, run `script_reset.sh` from the root of your folder. Ensure it reads `"Terraform destroying the static website succeeded"` to verify successful deletion of resources.
-
+To reset all variables, run `script_reset.sh` from the root of your folder.
